@@ -1,15 +1,15 @@
-package com.example.myapplication2
+package com.example.playlistmaker1
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class MediaActivity : AppCompatActivity() {
+class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_media)
+        setContentView(R.layout.activity_settings)
         val actionBar = supportActionBar
         if (actionBar != null) {
-            actionBar.title = "Медиатека"
+            actionBar.title = "Настройки"
             actionBar.setDisplayHomeAsUpEnabled(true)
 
         }

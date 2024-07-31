@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application2</string>
+    <string name="app_name">PlaylistMaker1</string>
     <string name="search">Поиск</string>
     <string name="media_library">Медиатека</string>
     <string name="settings">Настройки</string>
@@ -10,4 +10,5 @@
     <string name="shareit">Поделится приложением</string>
     <string name="support">написать в поддержку</string>
     <string name="useragrement">Пользовательское соглашение</string>
+    <string name="playlistmaker">PlaylistMaker</string>
 </resources>
