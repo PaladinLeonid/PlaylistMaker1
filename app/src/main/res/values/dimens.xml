@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="button_margin_start">4dp</dimen>
+
+        <dimen name="button_margin_start">4dp</dimen>
+        <dimen name="title_size">22sp</dimen>
+        <dimen name="main_padding">16dp</dimen>
+        <dimen name="button_corner_radius">16dp</dimen>
+        <dimen name="button_icon_padding">8dp</dimen>
 </resources>

@@ -44,4 +44,5 @@
         <item name="android:layout_marginBottom">18dp</item>
         <item name="android:backgroundTint">@color/white</item>
     </style>
+
 </resources>
