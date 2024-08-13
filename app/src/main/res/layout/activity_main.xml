@@ -4,13 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/blue">
+    android:background="@color/blue"
+    android:paddingLeft="@dimen/main_padding"
+    android:paddingRight="@dimen/main_padding">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="16dp"
+
         android:animateLayoutChanges="true"
         android:padding="10dp"
         android:text="@string/playlistmaker"
@@ -26,8 +28,7 @@
         android:orientation="vertical"
         app:layout_anchor="@+id/content_layout"
         android:layout_marginBottom="28dp"
-        android:paddingLeft="@dimen/main_padding"
-        android:paddingRight="@dimen/main_padding"
+
         app:layout_anchorGravity="center_horizontal"
 
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
