@@ -13,8 +13,7 @@ class MediaActivity : AppCompatActivity() {
         val backButton = findViewById<ImageView>(R.id.arrow_back)
         supportActionBar?.hide()
         backButton.setOnClickListener {
-            val mainsIntent = Intent(this, MainActivity::class.java)
-            startActivity(mainsIntent)
-        }
+            finish()
         }
     }
+}

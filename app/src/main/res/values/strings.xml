@@ -5,10 +5,19 @@
     <string name="settings">Настройки</string>
     <string name="Settings">Настройки</string>
     <string name="todo">todo</string>
-
     <string name="Theme">Темная тема</string>
     <string name="shareit">Поделится приложением</string>
     <string name="support">Написать в поддержку</string>
     <string name="useragrement">Пользовательское соглашение</string>
     <string name="playlistmaker">PlaylistMaker</string>
+    <string name="search_edit_hint">Поиск</string>
+    <string name="terms_of_use_link" />
+    <string name="share_text" />
+    <string name="offerlink">https://yandex.ru/legal/practicum_offer/</string>
+    <string name="clear">Clear</string>
+    <string name="support_email_title">Сообщение разработчикам и разработчицам приложения Playlist Maker</string>
+    <string name="support_email_text">Спасибо разработчикам и разработчицам за крутое приложение!</string>
+    <string name="my_email">PaladinPlay@yandex.ru</string>
+    <string name="share_link">https://practicum.yandex.ru/android-developer/</string>
+
 </resources>

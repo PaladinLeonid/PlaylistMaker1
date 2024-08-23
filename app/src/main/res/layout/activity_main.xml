@@ -4,9 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/blue"
-    android:paddingLeft="@dimen/main_padding"
-    android:paddingRight="@dimen/main_padding">
+    android:background="@color/main_bg"
+>
 
     <TextView
         android:layout_width="wrap_content"
@@ -25,9 +24,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="24dp"
+        android:layout_marginBottom="28dp"
         android:orientation="vertical"
         app:layout_anchor="@+id/content_layout"
-        android:layout_marginBottom="28dp"
 
         app:layout_anchorGravity="center_horizontal"
 
@@ -40,8 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:text="@string/search"
-            app:icon="@drawable/lens"
-            />
+            app:icon="@drawable/lens" />
 
         <Button
             android:id="@+id/MediaButton"

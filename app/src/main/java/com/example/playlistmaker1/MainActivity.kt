@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, MediaActivity::class.java)
             startActivity(intent)
         }
-supportActionBar?.hide()
+        supportActionBar?.hide()
 
     }
 
