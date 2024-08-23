@@ -11,4 +11,10 @@
     <string name="support">Написать в поддержку</string>
     <string name="useragrement">Пользовательское соглашение</string>
     <string name="playlistmaker">PlaylistMaker</string>
+    <string name="search_edit_hint">Поиск</string>
+    <string name="terms_of_use_link" />
+    <string name="share_text" />
+    <string name="offerlink">https://yandex.ru/legal/practicum_offer/</string>
+    <string name="clear">Clear</string>
+
 </resources>
