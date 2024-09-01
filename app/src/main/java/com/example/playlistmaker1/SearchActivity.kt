@@ -32,7 +32,7 @@ class SearchActivity : AppCompatActivity() {
             finish()
         }
         clearIcon.setOnClickListener {
-            searchField.setText("")
+            searchField.text.clear()
             val inputMethodManager =
                 getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
             inputMethodManager?.hideSoftInputFromWindow(it.windowToken, 0)
@@ -54,11 +54,20 @@ class SearchActivity : AppCompatActivity() {
         }
         searchField.addTextChangedListener(simpleTextWatcher)
     }
-
-
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(EXTRA_SEARCH_TEXT, searchText)
+    }
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        searchField.setText(savedInstanceState.getString(EXTRA_SEARCH_TEXT,""))
+    }
     private fun clearButtonVisibility(s: CharSequence?, clearButton: ImageView) {
         val clearIcon = findViewById<ImageView>(R.id.search_clear_btn)
         clearIcon.isVisible = !s.isNullOrEmpty()
+    }
+    companion object {
+        const val EXTRA_SEARCH_TEXT = "searchText"
     }
 }
 

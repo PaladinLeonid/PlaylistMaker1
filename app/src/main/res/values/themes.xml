@@ -5,6 +5,5 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
     <style name="Theme.MyApplication2" parent="Base.Theme.MyApplication2" />
 </resources>
