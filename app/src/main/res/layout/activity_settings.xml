@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".SettingsActivity"
-    android:background="@color/white"
+    android:background="@color/setting_bg"
     android:paddingLeft="@dimen/main_padding"
     android:paddingRight="@dimen/main_padding">
     <LinearLayout

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/setting_bg"
     android:paddingLeft="@dimen/main_padding"
     android:paddingRight="@dimen/main_padding"
     tools:context=".SearchActivity">
@@ -22,14 +22,14 @@
             android:src="@drawable/arrow_back_foreground"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            app:tint="@color/black"
+            app:tint="@color/settings_text_color"
             tools:ignore="ContentDescription" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/search"
-            android:textColor="@color/black"
+            android:textColor="@color/settings_text_color"
             android:textSize="@dimen/title_size"
 
             android:layout_marginTop="12dp"/>

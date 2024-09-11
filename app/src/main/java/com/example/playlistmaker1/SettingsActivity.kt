@@ -31,7 +31,6 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         settingsShareTxt.setOnClickListener {
-
             Intent().apply {
                 val urlLink = getString(R.string.share_link)
                 action = Intent.ACTION_SEND
@@ -39,6 +38,7 @@ class SettingsActivity : AppCompatActivity() {
                 type = "text/plain" // Тип содержания
                 startActivity(Intent.createChooser(this, null));
             }
+        }
 
             supportBtnTxt.setOnClickListener {
                 val mail = getString(R.string.my_email)//"PaladinPlay@yandex.ru"
@@ -51,8 +51,8 @@ class SettingsActivity : AppCompatActivity() {
                     putExtra(Intent.EXTRA_EMAIL, arrayOf(mail))
                     putExtra(Intent.EXTRA_SUBJECT, title)
                     putExtra(Intent.EXTRA_TEXT, body)
+                    startActivity(this)
                 }
-                startActivity(action)
             }
 
             forwardButtonTxt.setOnClickListener {
@@ -71,7 +71,7 @@ class SettingsActivity : AppCompatActivity() {
 
 
     }
-}
+
 
        
 
