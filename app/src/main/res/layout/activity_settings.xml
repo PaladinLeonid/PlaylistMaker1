@@ -7,102 +7,61 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".SettingsActivity"
+    android:background="@color/setting_bg"
     android:paddingLeft="@dimen/main_padding"
     android:paddingRight="@dimen/main_padding">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/arrow_back"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/arrow_back_foreground"
             android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
-            app:tint="@color/black" />
+            android:src="@drawable/arrow_back_foreground"
+            app:tint="@color/settings_text_color" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:text="@string/settings"
-            android:textColor="@color/black"
-            android:textSize="@dimen/title_size"
-            android:layout_marginTop="12dp"/>
+            android:textColor="@color/settings_text_color"
+            android:textSize="@dimen/title_size" />
     </LinearLayout>
 
-    <LinearLayout
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/themeSwitcher1"
+        style="@style/SettingTextStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="12dp"
-        android:backgroundTint="@color/white"
-        android:orientation="horizontal">
+        android:gravity="center_vertical"
+        android:paddingVertical="20dp"
+        android:text="@string/Theme"
+        android:textColor="@color/settings_text_color"
+        android:textSize="16sp"
+        android:thumbTintMode="screen" />
 
-        <TextView
-            style="@style/SettingsTextStyle"
-            android:layout_gravity="center"
-            android:text="@string/Theme" />
 
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:layout_width="56dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            tools:ignore="TouchTargetSizeCheck" />
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/settingsShareTxt"
+        style="@style/SettingTextStyle"
+        android:drawableEnd="@drawable/shareico_foreground"
+        android:text="@string/shareit" />
 
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        tools:ignore="ExtraText">>
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/supportBtnTxt"
+        style="@style/SettingTextStyle"
+        android:drawableEnd="@drawable/supportico_foreground"
+        android:text="@string/support" />
 
-        <TextView
-            style="@style/SettingsTextStyle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/shareit" />
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/forwardButtonTxt"
+        style="@style/SettingTextStyle"
+        android:drawableEnd="@drawable/shareit_foreground"
+        android:text="@string/useragrement" />
 
-        <ImageButton
-            android:id="@+id/settings_share"
-            style="@style/SettingsButtonStyle"
-            android:src="@drawable/shareico_foreground"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            style="@style/SettingsTextStyle"
-            android:text="@string/support" />
-
-        <ImageButton
-            android:id="@+id/settings_support"
-            style="@style/SettingsButtonStyle"
-            android:src="@drawable/supportico_foreground"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">>
-
-        <TextView
-            style="@style/SettingsTextStyle"
-            android:text="@string/useragrement" />
-
-        <ImageButton
-            android:id="@+id/settings_shareIt"
-            style="@style/SettingsButtonStyle"
-            android:src="@drawable/shareit_foreground"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-    </LinearLayout>
 </LinearLayout>

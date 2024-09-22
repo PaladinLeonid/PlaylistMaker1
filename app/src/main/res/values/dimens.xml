@@ -6,4 +6,8 @@
         <dimen name="main_padding">16dp</dimen>
         <dimen name="button_corner_radius">16dp</dimen>
         <dimen name="button_icon_padding">8dp</dimen>
+        <dimen name="icon_size">16dp</dimen>
+        <dimen name="settings_padding">21dp</dimen>
+        <dimen name="setting_text_size">16sp</dimen>
+        <dimen name="setting_icon_size">16dp</dimen>
 </resources>
