@@ -87,14 +87,13 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/testText"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/trackList"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:textAlignment="center"
-        android:textSize="40sp"
-        android:text=""/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
 
 
 

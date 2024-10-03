@@ -19,4 +19,8 @@
     <string name="support_email_text">Спасибо разработчикам и разработчицам за крутое приложение!</string>
     <string name="my_email">PaladinPlay@yandex.ru</string>
     <string name="share_link">https://practicum.yandex.ru/android-developer/</string>
+    <string name="track_image">Обложка</string>
+    <string name="track_name">Smells Like Teen Spirit</string>
+    <string name="track_author">Nirvana</string>
+    <string name="track_timing">2:55</string>
 </resources>

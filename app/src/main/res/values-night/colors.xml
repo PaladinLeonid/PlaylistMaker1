@@ -13,4 +13,6 @@
     <color name="search_background">#FFFFFF</color>
     <color name="search_hint">#1A1B22</color>
     <color name="search_clear_icon">#1A1B22</color>
+    <color name="track_details_color">#FFFFFF</color>
+    <color name="track_title_color">#FFFFFF</color>
 </resources>
