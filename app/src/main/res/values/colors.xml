@@ -17,4 +17,6 @@
     <color name="track_details_color">#AEAFB4</color>
     <color name="track_title_color">#000000</color>
     <color name="ic_bg">#AEAFB4</color>
+    <color name="update_btn">#FFFFFF</color>
+    <color name="Update_btn_tint">#1A1B22</color>
 </resources>

@@ -30,7 +30,7 @@ class SearchActivity : AppCompatActivity() {
     private var searchText: String? = null
     private var searchQuery: String = ""
     private var lastQuery: String? = null
-        private lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerView: RecyclerView
     private lateinit var noSong: LinearLayout
     private lateinit var updateButton: Button
     private lateinit var adapter: TrackAdapter
@@ -47,7 +47,7 @@ class SearchActivity : AppCompatActivity() {
         adapter = TrackAdapter(mutableListOf())
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-               supportActionBar?.hide()
+        supportActionBar?.hide()
 
         searchField.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
@@ -78,14 +78,15 @@ class SearchActivity : AppCompatActivity() {
                 }
             }
         }
-
-
-
         backButton.setOnClickListener {
             finish()
         }
         clearIcon.setOnClickListener {
             searchField.text.clear()
+            searchField.clearFocus()
+            adapter.updateTracks(emptyList())
+            noInternet.visibility = View.GONE
+            noSong.visibility = View.GONE
             val inputMethodManager =
                 getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
             inputMethodManager?.hideSoftInputFromWindow(it.windowToken, 0)
@@ -100,11 +101,6 @@ class SearchActivity : AppCompatActivity() {
                 searchQuery = s.toString()
                 clearButtonVisibility(s, clearIcon)
                 searchText = s.toString()
-                if (searchQuery.isNotEmpty()) {
-                    recyclerView.visibility = View.VISIBLE // Показываем список, если есть текст
-                } else {
-                    recyclerView.visibility = View.GONE // Скрываем список, если текст пустой
-                }
             }
 
 
@@ -118,9 +114,8 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun clearButtonVisibility(s: CharSequence?, clearIcon: ImageView?) {
-        if (clearIcon != null) {
+                   val clearIcon = findViewById<ImageView>(R.id.search_clear_btn)
             clearIcon.isVisible = !s.isNullOrEmpty()
-        }
         }
 
 
@@ -151,6 +146,7 @@ class SearchActivity : AppCompatActivity() {
         noInternet = findViewById(R.id.no_internet)
         noSong = findViewById(R.id.no_song)
         recyclerView = findViewById(R.id.trackList)
+        noSong.visibility = View.GONE
         call.enqueue(object : Callback<TrackResponse> {
             override fun onResponse(call: Call<TrackResponse>, response: Response<TrackResponse>) {
                 noInternet.visibility = View.GONE
@@ -184,11 +180,11 @@ class SearchActivity : AppCompatActivity() {
                 Log.e("SearchActivity", "Network Error: ${t.message}")
                 val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(searchField.windowToken, 0)
+                noSong.visibility = View.GONE
                 noInternet.visibility = View.VISIBLE
                 recyclerView.visibility = View.GONE
-                noSong.visibility = View.GONE
                 lastQuery = searchQuery
-                callback(false)
+                callback(true)
             }
         })
     }
