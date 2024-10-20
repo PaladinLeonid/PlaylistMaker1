@@ -2,10 +2,9 @@ package com.example.playlistmaker1
 
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -19,31 +18,40 @@ class TrackViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val trackTime: TextView = itemView.findViewById(R.id.track_time)
     private val trackLogo: ImageView = itemView.findViewById(R.id.track_image)
 
+    private fun getTrackDuration(milliseconds: String): String {
+        val totalSeconds = milliseconds.toLong().div(1000)
+        val minutes = (totalSeconds / 60) % 60
+        val seconds = totalSeconds % 60
+        return String.format("%02d:%02d", minutes, seconds)
+    }
+
+
+    companion object {
+
+        fun create(parent: ViewGroup): TrackViewHolder {
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.track_view, parent, false)
+            return TrackViewHolder(view)
+        }
+    }
+
     @SuppressLint("SuspiciousIndentation")
     fun bind(model: Track) {
         trackName.text = model.trackName
         artistName.text = model.artistName
-        trackTime.text = model.trackTime
-        if (Network.isInternetConnection(itemView.context)) {
-            Glide.with(itemView)
-                .load(model.artworkUrl100)
-                .fitCenter()
-                .placeholder(R.drawable.track_placeholder)
-                .centerCrop()
-                .transform(RoundedCorners(Utils.dpToPx(2f, itemView.context)))
-                .into(trackLogo)
-        } else {
-            trackLogo.setImageResource(R.drawable.track_placeholder)
-        }
-    }
-}
+        trackTime.text = getTrackDuration(model.trackTimeMillis.toString())
 
-object Network {
-    fun isInternetConnection(context: Context): Boolean {
-        val connectManager =
-            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val netInf: NetworkInfo? = connectManager.activeNetworkInfo
-        return netInf != null && netInf.isConnected
+        Glide.with(itemView)
+            .load(model.artworkUrl100)
+            .fitCenter()
+            .placeholder(R.drawable.track_placeholder)
+            .centerCrop()
+            .transform(RoundedCorners(Utils.dpToPx(2f, itemView.context)))
+            .into(trackLogo)
+
     }
+
+
+
 
 }

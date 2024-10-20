@@ -23,4 +23,10 @@
     <string name="track_name">Smells Like Teen Spirit</string>
     <string name="track_author">Nirvana</string>
     <string name="track_timing">2:55</string>
+    <string name="no_song">Ничего не нашлось</string>
+    <string name="no_internet_first_line">Проблемы со связью</string>
+    <string name="no_internet_second_line">" "</string>
+    <string name="no_internet_third_line">Загрузка не удалась. Проверьте подключение к интернету</string>
+    <string name="update">Обновить</string>
+    <string name="iTunes_link">https://itunes.apple.com/\n</string>
 </resources>
