@@ -14,6 +14,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,6 +35,10 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var noSong: LinearLayout
     private lateinit var updateButton: Button
     private lateinit var adapter: TrackAdapter
+
+    private lateinit var searchHistory: SearchHistory
+    private lateinit var yourSearch: TextView
+    private lateinit var clearHistory: Button
     @SuppressLint("ServiceCast", "MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,15 +46,17 @@ class SearchActivity : AppCompatActivity() {
         searchField = findViewById(R.id.search_edit_field)
         val backButton = findViewById<ImageView>(R.id.arrow_back)
         val clearIcon = findViewById<ImageView>(R.id.search_clear_btn)
-
-
+        hideKeyboard(window.decorView.rootView)
+        noSong = findViewById(R.id.no_song)
+        noInternet = findViewById(R.id.no_internet)
         recyclerView = findViewById(R.id.trackList)
-        adapter = TrackAdapter(mutableListOf())
-        recyclerView.adapter = adapter
+
+
         recyclerView.layoutManager = LinearLayoutManager(this)
         supportActionBar?.hide()
 
         searchField.setOnEditorActionListener { _, actionId, _ ->
+
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 Log.d("SearchActivity", "Search query: $searchQuery")
                 performSearch(searchQuery) { trackFound ->
@@ -91,6 +98,40 @@ class SearchActivity : AppCompatActivity() {
                 getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
             inputMethodManager?.hideSoftInputFromWindow(it.windowToken, 0)
         }
+        yourSearch = findViewById(R.id.yourSearch)
+        clearHistory = findViewById(R.id.clean_history_button)
+
+        adapter = TrackAdapter(mutableListOf()) { track: Track->
+            searchHistory.saveToHistory(track)
+            if (searchQuery.isEmpty()) {
+                adapter.updateTracks(searchHistory.getSearchHistory())
+            }
+        }
+            searchHistory = SearchHistory(getSharedPreferences("SEARCH_HISTORY", MODE_PRIVATE))
+        val historyTracks = searchHistory.getSearchHistory()
+        if (historyTracks.isNotEmpty()) {
+            adapter.updateTracks(historyTracks)
+            yourSearch.visibility = View.VISIBLE
+            recyclerView.visibility = View.VISIBLE
+            noSong.visibility = View.GONE
+            clearHistory.visibility = View.VISIBLE
+        } else {
+            noSong.visibility = View.GONE
+            recyclerView.visibility = View.GONE
+            yourSearch.visibility = View.GONE
+            clearHistory.visibility = View.GONE
+        }
+
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = adapter
+
+        clearHistory.setOnClickListener {
+            searchHistory.clearHistory()
+            yourSearch.visibility = View.GONE
+            clearHistory.visibility = View.GONE
+            recyclerView.visibility = View.GONE
+        }
+
 
         val simpleTextWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -105,7 +146,17 @@ class SearchActivity : AppCompatActivity() {
 
 
             override fun afterTextChanged(s: Editable?) {
-
+                clearHistory.visibility = View.GONE
+                clearHistory.setOnClickListener {
+                    hideKeyboard(window.decorView.rootView)
+                    searchField.text.clear()
+                    clearIcon.visibility = View.GONE
+                    yourSearch.visibility = View.VISIBLE
+                    adapter.updateTracks(searchHistory.getSearchHistory())
+                    recyclerView.visibility = View.VISIBLE
+                    clearHistory.visibility = View.VISIBLE
+                    searchField.requestFocus()
+                }
             }
 
         }
@@ -114,11 +165,14 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun clearButtonVisibility(s: CharSequence?, clearIcon: ImageView?) {
-                   val clearIcon = findViewById<ImageView>(R.id.search_clear_btn)
+        val clearIcon = findViewById<ImageView>(R.id.search_clear_btn)
             clearIcon.isVisible = !s.isNullOrEmpty()
         }
 
-
+    private fun hideKeyboard(view: View) {
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
