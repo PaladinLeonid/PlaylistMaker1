@@ -28,11 +28,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
+            android:padding="12dp"
             android:text="@string/search"
             android:textColor="@color/settings_text_color"
-            android:textSize="@dimen/title_size"
-
-            android:layout_marginTop="12dp"/>
+            android:textSize="@dimen/title_size" />
     </LinearLayout>
 
     <LinearLayout
@@ -71,6 +71,7 @@
                 android:textSize="16sp"
                 app:endIconMode="clear_text"
                 />
+
             <ImageButton
                 android:id="@+id/search_clear_btn"
                 android:layout_width="wrap_content"
@@ -96,5 +97,84 @@
 
 
 
+    <LinearLayout
+        android:id="@+id/no_song"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="102dp"
+        android:layout_gravity="center"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+                 android:layout_gravity="center"
+            android:src="@drawable/no_song" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+
+            android:text="@string/no_song" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/no_internet"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="102dp"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/no_internet" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="16dp" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Placeholder"
+                android:text="@string/no_internet_first_line" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Placeholder"
+                android:text="@string/no_internet_second_line" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                style="@style/Placeholder"
+                android:text="@string/no_internet_third_line" />
+
+            <Button
+                android:id="@+id/update_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                style="@style/Update"
+                android:text="@string/update"
+                android:textAllCaps="false" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -15,4 +15,6 @@
     <color name="search_clear_icon">#1A1B22</color>
     <color name="track_details_color">#FFFFFF</color>
     <color name="track_title_color">#FFFFFF</color>
+    <color name="update_btn">#FF000000</color>
+    <color name="Update_btn_tint">#FFFFFF</color>
 </resources>
