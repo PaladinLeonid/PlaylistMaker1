@@ -106,6 +106,7 @@ class SearchActivity : AppCompatActivity() {
                 }
 
                 if (searchQuery.isEmpty()) {
+
                     yourSearch.visibility = View.VISIBLE
                     adapter.updateTracks(searchHistory.getSearchHistory())
                     recyclerView.visibility = View.VISIBLE
@@ -177,47 +178,54 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun performSearch(query: String, callback: (Boolean) -> Unit) {
+
         val retrofit = Retrofit.Builder()
             .baseUrl(getString(R.string.iTunes_link))
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        val api = retrofit.create(ItunesApi::class.java)
-        val call = api.search(query)
-        call.enqueue(object : Callback<TrackResponse> {
-            override fun onResponse(
-                call: Call<TrackResponse>,
-                response: Response<TrackResponse>
-            ) {
 
+        val api = retrofit.create(ItunesApi::class.java)
+
+        val call = api.search(query)
+
+        call.enqueue(object : Callback<TrackResponse> {
+
+            override fun onResponse(call: Call<TrackResponse>, response: Response<TrackResponse>) {
                 noInternet.visibility = View.GONE
 
                 if (response.isSuccessful) {
+
                     val trackResponse = response.body()
+
                     val tracks = trackResponse?.results ?: emptyList()
-                    yourSearch.visibility = View.GONE
-                    historyCleaner.visibility = View.GONE
+
+
                     if (tracks.isNotEmpty()) {
                         adapter.updateTracks(tracks)
-                        recyclerView.adapter = adapter
                         recyclerView.visibility = View.VISIBLE
+                        hideKeyboard(window.decorView.rootView)
                         noSong.visibility = View.GONE
+                        yourSearch.visibility = View.GONE
+                        historyCleaner.visibility = View.GONE
                         callback(true)
                     } else {
                         recyclerView.visibility = View.GONE
                         noSong.visibility = View.VISIBLE
                         callback(false)
                     }
-                } else {
-                    recyclerView.visibility = View.GONE
-                    noSong.visibility = View.VISIBLE
+
                 }
             }
 
             override fun onFailure(call: Call<TrackResponse>, t: Throwable) {
-                noSong.visibility = View.VISIBLE
+                noInternet.visibility = View.VISIBLE
                 recyclerView.visibility = View.GONE
+                hideKeyboard(window.decorView.rootView)
                 noSong.visibility = View.GONE
+                yourSearch.visibility = View.GONE
+                historyCleaner.visibility = View.GONE
                 lastQuery = searchQuery
+                callback(true)
             }
         })
     }
