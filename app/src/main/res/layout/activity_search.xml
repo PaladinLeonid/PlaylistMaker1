@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/setting_bg">
+
 <LinearLayout
+
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,81 +21,86 @@
     tools:context=".SearchActivity">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints,UseCompoundDrawables">
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:padding="4dp">
 
         <ImageView
             android:id="@+id/arrow_back"
             android:layout_width="24dp"
             android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="12dp"
             android:src="@drawable/arrow_back_foreground"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            app:tint="@color/settings_text_color"
-            tools:ignore="ContentDescription" />
+            app:tint="@color/settings_text_color" />
 
         <TextView
+            android:text="@string/search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            style="@style/Titles"/>
 
-            android:padding="12dp"
-            android:text="@string/search"
-            android:textColor="@color/settings_text_color"
-            android:textSize="@dimen/title_size" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:layout_marginVertical="8dp"
         android:background="@drawable/edittext_background"
         android:backgroundTint="@color/search_background"
         android:orientation="horizontal">
 
         <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginHorizontal="8dp"
+        >
+
+        <EditText
+            android:drawablePadding="8dp"
+            android:drawableStart="@drawable/lensedittext"
+            android:id="@+id/search_edit_field"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginHorizontal="8dp">
+            android:autofillHints=""
+            android:background="@color/search_background"
+            android:focusable="true"
+            android:focusedByDefault="true"
+            android:fontFamily="@font/ys_display_medium"
+            android:hint="@string/search"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@color/search_hint"
+            android:textCursorDrawable="@drawable/line_l_svgrepo_com"
+            android:textSize="16sp"
+            app:endIconMode="clear_text"
+            />
 
-            <EditText
-                android:drawablePadding="8dp"
-                android:drawableStart="@drawable/lensedittext"
-                android:id="@+id/search_edit_field"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:autofillHints=""
-                android:background="@color/search_background"
-                android:focusable="true"
-                android:focusedByDefault="true"
-                android:fontFamily="@font/ys_display_medium"
-                android:hint="@string/search"
-                android:imeOptions="actionDone"
-                android:inputType="text"
-                android:maxLines="1"
-                android:singleLine="true"
-                android:textColor="@color/black"
-                android:textColorHint="@color/search_hint"
-                android:textCursorDrawable="@drawable/line_l_svgrepo_com"
-                android:textSize="16sp"
-                app:endIconMode="clear_text"
-                />
 
-            <ImageButton
-                android:id="@+id/search_clear_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="end"
-                android:paddingVertical="14dp"
-                android:paddingHorizontal="14dp"
-                android:visibility="gone"
-                android:background="@color/search_background"
-                android:src="@drawable/clear"
-                app:tint="@color/search_clear_icon" />
+        <Button
+            android:id="@+id/focusButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
 
-        </FrameLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/search_clear_btn"
+            android:layout_width="40dp"
+            android:layout_height="36dp"
+            android:layout_gravity="end|center_vertical"
+            android:visibility="gone"
+            android:background="@android:color/transparent"
+            app:icon="@drawable/clear"
+            app:iconGravity="end"
+            app:iconTint="@color/search_clear_icon"/>
 
+    </FrameLayout>
     </LinearLayout>
+
 
     <TextView
         android:layout_width="match_parent"
@@ -95,8 +109,12 @@
         android:layout_height="52dp"
         android:layout_marginTop="24dp"
         android:gravity="center"
-        style="@style/Placeholder"
-        android:text="@string/You_search" />
+        android:text="@string/You_search"
+        android:fontFamily="@font/ys_display_medium"
+        android:textFontWeight="500"
+        android:textSize="19sp"
+       android:textColor="@color/settings_text_color"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:visibility="visible"
@@ -108,7 +126,7 @@
         android:layout_marginTop="24dp" />
 
     <Button
-        android:id="@+id/clean_history_button"
+        android:id="@+id/historyCleaner"
         android:visibility="visible"
         style="@style/Update"
         android:layout_width="wrap_content"
@@ -117,7 +135,6 @@
         android:layout_marginTop="24dp"
         android:text="@string/remove_history"
         android:textAllCaps="false" />
-
 
     <LinearLayout
         android:id="@+id/no_song"
@@ -131,7 +148,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-                 android:layout_gravity="center"
+            android:layout_gravity="center"
             android:src="@drawable/no_song" />
 
         <TextView
@@ -139,7 +156,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
-
+            style="@style/Placeholder"
             android:text="@string/no_song" />
 
     </LinearLayout>
@@ -196,7 +213,6 @@
                 android:textAllCaps="false" />
 
         </LinearLayout>
-
     </LinearLayout>
-
 </LinearLayout>
+</ScrollView>
