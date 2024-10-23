@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="white">#FFFFFF</color>
     <color name="main_bg">#1A1B22</color>
     <color name="setting_bg">#1A1B22</color>
@@ -17,4 +17,6 @@
     <color name="track_title_color">#FFFFFF</color>
     <color name="update_btn">#FF000000</color>
     <color name="Update_btn_tint">#FFFFFF</color>
+    <color name="switch_thumb_dark" tools:ignore="MissingDefaultResource">#3772E7</color>
+    <color name="switch_track_dark" tools:ignore="MissingDefaultResource">#9FBBF3</color>
 </resources>
