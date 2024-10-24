@@ -19,7 +19,4 @@
     <color name="ic_bg">#AEAFB4</color>
     <color name="update_btn">#FFFFFF</color>
     <color name="Update_btn_tint">#1A1B22</color>
-    <color name="switch_thumb_light">#AEAFB4</color>
-    <color name="switch_track_light">#E6E8EB</color>
-
 </resources>
