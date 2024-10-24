@@ -72,6 +72,6 @@
         android:gravity="center_vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/acception"
+        android:src="@drawable/shareit_foreground"
         app:tint="@color/text_color" />
 </LinearLayout>
