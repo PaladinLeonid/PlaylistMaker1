@@ -23,6 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:orientation="horizontal"
+        android:gravity="center_vertical"
         android:padding="4dp">
 
         <ImageView
@@ -39,6 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+
             style="@style/Titles"/>
 
     </LinearLayout>
@@ -121,7 +123,7 @@
         android:id="@+id/trackList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="12dp"
+
         android:paddingVertical="8dp"
         android:layout_marginTop="24dp" />
 
