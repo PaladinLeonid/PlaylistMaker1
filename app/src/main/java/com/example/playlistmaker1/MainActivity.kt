@@ -6,10 +6,11 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        Themes.setNightModeState(this, Themes.getNightModeState(this))
         val settings: Button = findViewById(R.id.SettingsButton)
         settings.setOnClickListener {
             val intent = Intent(this@MainActivity, SettingsActivity::class.java)
@@ -28,5 +29,6 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
     }
+
 
 }

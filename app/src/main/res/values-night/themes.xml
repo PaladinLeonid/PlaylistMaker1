@@ -4,5 +4,7 @@
         <item name="colorPrimary">@color/colorPrimaryDark</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="trackColor">@color/switch_track_dark</item>
+        <item name="thumbColor">@color/switch_thumb_dark</item>
     </style>
 </resources>

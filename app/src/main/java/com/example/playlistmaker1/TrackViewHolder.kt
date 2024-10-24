@@ -36,7 +36,7 @@ class TrackViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     }
 
     @SuppressLint("SuspiciousIndentation")
-    fun bind(model: Track) {
+    fun bind(model: Track, isTrackAddedToHistory: Boolean = false) {
         trackName.text = model.trackName
         artistName.text = model.artistName
         trackTime.text = getTrackDuration(model.trackTimeMillis.toString())
