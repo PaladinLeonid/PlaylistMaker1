@@ -35,52 +35,38 @@ class SettingsActivity : AppCompatActivity() {
 
 
         settingsShareTxt.setOnClickListener {
-                Intent().apply {
-                    val urlLink = getString(R.string.share_link)
-                    action = Intent.ACTION_SEND
-                    putExtra(Intent.EXTRA_TEXT, urlLink) // Текст сообщения
-                    type = "text/plain" // Тип содержания
-                    startActivity(Intent.createChooser(this, null));
-                }
-            }
-
-            supportBtnTxt.setOnClickListener {
-                val mail = getString(R.string.my_email)//"PaladinPlay@yandex.ru"
-                val title =
-                    getString(R.string.support_email_title)//"Сообщение разработчикам и разработчицам приложения Playlist Maker"
-                val body =
-                    getString(R.string.support_email_text)//"Спасибо разработчикам и разработчицам за крутое приложение!"
-                val action = Intent(Intent.ACTION_SENDTO).apply {
-                    data = Uri.parse("mailto:")
-                    putExtra(Intent.EXTRA_EMAIL, arrayOf(mail))
-                    putExtra(Intent.EXTRA_SUBJECT, title)
-                    putExtra(Intent.EXTRA_TEXT, body)
-                    startActivity(this)
-                }
-            }
-
-            forwardButtonTxt.setOnClickListener {
-                Intent().apply {
-                    val url = getString(R.string.offerlink)
-                    action = Intent.ACTION_VIEW
-                    data = Uri.parse(url)
-                    startActivity(this)
-                }
+            Intent().apply {
+                val urlLink = getString(R.string.share_link)
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, urlLink) // Текст сообщения
+                type = "text/plain" // Тип содержания
+                startActivity(Intent.createChooser(this, null));
             }
         }
 
+        supportBtnTxt.setOnClickListener {
+            val mail = getString(R.string.my_email)//"PaladinPlay@yandex.ru"
+            val title =
+                getString(R.string.support_email_title)//"Сообщение разработчикам и разработчицам приложения Playlist Maker"
+            val body =
+                getString(R.string.support_email_text)//"Спасибо разработчикам и разработчицам за крутое приложение!"
+            val action = Intent(Intent.ACTION_SENDTO).apply {
+                data = Uri.parse("mailto:")
+                putExtra(Intent.EXTRA_EMAIL, arrayOf(mail))
+                putExtra(Intent.EXTRA_SUBJECT, title)
+                putExtra(Intent.EXTRA_TEXT, body)
+                startActivity(this)
+            }
+        }
+
+        forwardButtonTxt.setOnClickListener {
+            Intent().apply {
+                val url = getString(R.string.offerlink)
+                action = Intent.ACTION_VIEW
+                data = Uri.parse(url)
+                startActivity(this)
+            }
+        }
     }
 
-
-
-
-
-
-
-
-
-       
-
-   
-
-
+}
