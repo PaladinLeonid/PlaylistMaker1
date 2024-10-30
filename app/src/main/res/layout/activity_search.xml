@@ -23,7 +23,6 @@
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:orientation="horizontal"
-            android:gravity="center_vertical"
             android:padding="4dp">
 
             <ImageView
@@ -40,7 +39,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-
                 style="@style/Titles"/>
 
         </LinearLayout>
@@ -123,7 +121,7 @@
             android:id="@+id/trackList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:paddingHorizontal="12dp"
             android:paddingVertical="8dp"
             android:layout_marginTop="24dp" />
 
@@ -146,7 +144,6 @@
             android:layout_marginTop="102dp"
             android:layout_gravity="center"
             android:orientation="vertical" >
-
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -162,7 +159,6 @@
                 android:text="@string/no_song" />
 
         </LinearLayout>
-
         <LinearLayout
             android:id="@+id/no_internet"
             android:visibility="gone"
@@ -170,13 +166,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="102dp"
             android:orientation="vertical" >
-
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:src="@drawable/no_internet" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -185,26 +179,22 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginTop="16dp" >
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/Placeholder"
                     android:text="@string/no_internet_first_line" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/Placeholder"
                     android:text="@string/no_internet_second_line" />
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     style="@style/Placeholder"
                     android:text="@string/no_internet_third_line" />
-
                 <Button
                     android:id="@+id/update_button"
                     android:layout_width="wrap_content"
