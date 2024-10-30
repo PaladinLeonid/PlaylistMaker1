@@ -12,41 +12,44 @@
     android:paddingRight="@dimen/main_padding">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:padding="4dp">
 
         <ImageView
             android:id="@+id/arrow_back"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="12dp"
             android:src="@drawable/arrow_back_foreground"
             app:tint="@color/settings_text_color" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_gravity="center_vertical"
             android:text="@string/settings"
-            android:textColor="@color/settings_text_color"
-            android:textSize="@dimen/title_size" />
+            style="@style/Titles"/>
+
     </LinearLayout>
 
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/themeSwitcher1"
-        style="@style/SettingTextStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:paddingVertical="20dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="24dp"
+        android:layout_gravity="center_vertical"
+        style="@style/SettingTextStyle"
+        tools:ignore="RtlCompat,TextViewEdits,TouchTargetSizeCheck"
         android:text="@string/Theme"
-        android:textColor="@color/settings_text_color"
-        android:textSize="16sp"
-        android:thumbTintMode="screen" />
-
+        app:thumbTint="@color/switch_thumb"
+        app:trackTint="@color/switch_track" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/settingsShareTxt"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
         style="@style/SettingTextStyle"
         android:drawableEnd="@drawable/shareico_foreground"
         android:text="@string/shareit" />
@@ -54,14 +57,19 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/supportBtnTxt"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
         style="@style/SettingTextStyle"
-        android:drawableEnd="@drawable/supportico_foreground"
+        android:drawableEnd="@drawable/support"
         android:text="@string/support" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/forwardButtonTxt"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
         style="@style/SettingTextStyle"
-        android:drawableEnd="@drawable/shareit_foreground"
+        android:drawableEnd="@drawable/acception"
         android:text="@string/useragrement" />
 
 </LinearLayout>
+

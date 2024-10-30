@@ -2,13 +2,11 @@ package com.example.playlistmaker1
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.res.Configuration
 import android.net.Uri
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
 
 class SettingsActivity : AppCompatActivity() {
@@ -22,28 +20,19 @@ class SettingsActivity : AppCompatActivity() {
         val forwardButtonTxt = findViewById<TextView>(R.id.forwardButtonTxt)
 
         val supportBtnTxt = findViewById<TextView>(R.id.supportBtnTxt)
-
         val settingsShareTxt = findViewById<TextView>(R.id.settingsShareTxt)
         supportActionBar?.hide()
 
         backButton.setOnClickListener {
             finish()
         }
-        val switchTheme = findViewById<SwitchCompat>(R.id.themeSwitcher1)
-        switchTheme.isChecked = when (resources?.configuration?.uiMode?.and(Configuration.UI_MODE_NIGHT_MASK)) {
-            Configuration.UI_MODE_NIGHT_YES -> true
-            else -> false
+        val switchNightMode = findViewById<SwitchCompat>(R.id.themeSwitcher1)
+        switchNightMode.isChecked = Themes.getNightModeState(this)
+
+        switchNightMode.setOnCheckedChangeListener { _, isChecked ->
+            Themes.setNightModeState(this, isChecked)
         }
 
-        switchTheme.setOnCheckedChangeListener {buttonView, isChecked ->
-            AppCompatDelegate.setDefaultNightMode(
-                if(isChecked) {
-                    AppCompatDelegate.MODE_NIGHT_YES
-                } else {
-                    AppCompatDelegate.MODE_NIGHT_NO
-                }
-            )
-        }
 
         settingsShareTxt.setOnClickListener {
             Intent().apply {
@@ -78,13 +67,6 @@ class SettingsActivity : AppCompatActivity() {
                 startActivity(this)
             }
         }
-
     }
+
 }
-
-
-       
-
-   
-
-
