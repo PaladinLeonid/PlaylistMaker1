@@ -10,7 +10,7 @@
     <color name="search_edit_text">#1A1B22</color>
     <color name="colorPrimary">#272727</color>
     <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#333333</color>
+    <color name="colorAccent">#1A1B22</color>
     <color name="search_background">#E6E8EB</color>
     <color name="search_hint">#AEAFB4</color>
     <color name="search_clear_icon">#1A1B22</color>
