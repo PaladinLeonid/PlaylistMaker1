@@ -21,6 +21,7 @@ class TrackAdapter(
     override fun onBindViewHolder(holder: TrackViewHolder, position: Int) {
         val track = tracks[position]
         holder.bind(track)
+        holder.setIsRecyclable(false)
         holder.itemView.setOnClickListener {
             onTrackClickListener(track)
         }

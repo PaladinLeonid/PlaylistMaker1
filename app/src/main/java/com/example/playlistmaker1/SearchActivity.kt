@@ -182,8 +182,9 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun openTrack(track: Track) {
-        val trackIntent = Intent(this, PlayerActivity:: class.java)
-        trackIntent.putExtra("track",track)
+        val trackIntent = Intent(this, PlayerActivity:: class.java).apply {
+            putExtra(TRACK_DATA,track)
+        }
         startActivity(trackIntent)
     }
 
@@ -271,6 +272,7 @@ class SearchActivity : AppCompatActivity() {
     companion object {
         private const val SEARCH_QUERY_KEY = "search_query"
         private const val IS_CLEAR_BUTTON_VISIBLE_KEY = "isClearButtonVisible"
+        const val TRACK_DATA = "TRACK_DATA"
     }
 
 }

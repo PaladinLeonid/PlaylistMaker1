@@ -26,7 +26,7 @@ class SettingsActivity : AppCompatActivity() {
         backButton.setOnClickListener {
             finish()
         }
-        val switchNightMode = findViewById<SwitchCompat>(R.id.themeSwitcher1)
+        val switchNightMode = findViewById<SwitchCompat>(R.id.switchTheme)
         switchNightMode.isChecked = Themes.getNightModeState(this)
 
         switchNightMode.setOnCheckedChangeListener { _, isChecked ->

@@ -42,4 +42,7 @@
     <string name="country">Страна</string>
     <string name="You_search">Вы искали</string>
     <string name="remove_history">Очистить историю</string>
+    <string name="dark_mode">Темная тема\n</string>
+    <string name="sec">00:30</string>
+    <string name="Duration">Длительность</string>
 </resources>

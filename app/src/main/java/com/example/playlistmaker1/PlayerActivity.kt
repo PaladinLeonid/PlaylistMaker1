@@ -1,4 +1,3 @@
-
 package com.example.playlistmaker1
 
 import Track
@@ -13,28 +12,37 @@ import java.util.Date
 import java.util.Locale
 
 class PlayerActivity : AppCompatActivity() {
-    private lateinit var trackName: TextView
-    private lateinit var artistName: TextView
-    private lateinit var artwork: ImageView
-    private lateinit var trackTime: TextView
-    private lateinit var collection: TextView
-    private lateinit var release: TextView
-    private lateinit var country: TextView
-    private lateinit var genre:TextView
+    private lateinit var backButton: ImageView
+    private lateinit var coverImageView: ImageView
+    private lateinit var trackNameTextView: TextView
+    private lateinit var artistNameTextView: TextView
+    private lateinit var collectionNameTextView: TextView
+    private lateinit var releaseDateTextView: TextView
+    private lateinit var primaryGenreNameTextView: TextView
+    private lateinit var countryTextView: TextView
+    private lateinit var trackTimeTextView: TextView
+    private lateinit var playButton: ImageView
+    private lateinit var addToPlaylistButton: ImageView
+    private lateinit var addToFavoritesButton: ImageView
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_audioplayer)
 
-
-        genre = findViewById(R.id.track_genre)
-        trackName = findViewById(R.id.track_name)
-        artistName = findViewById(R.id.artist_name)
-        artwork = findViewById(R.id.track_cover)
-        trackTime = findViewById(R.id.track_duration_time_info)
-        collection = findViewById(R.id.track_album_info)
-        release = findViewById(R.id.track_year_info)
-        country = findViewById(R.id.track_country_info)
+        supportActionBar?.hide()
+        backButton = findViewById(R.id.backButton)
+        coverImageView = findViewById(R.id.cover)
+        trackNameTextView = findViewById(R.id.track_name_player)
+        artistNameTextView = findViewById(R.id.artistName)
+        collectionNameTextView = findViewById(R.id.collectionNameValue)
+        releaseDateTextView = findViewById(R.id.releaseDateValue)
+        primaryGenreNameTextView = findViewById(R.id.trackGenreValue)
+        countryTextView = findViewById(R.id.countryValue)
+        trackTimeTextView = findViewById(R.id.durationValue)
+        playButton = findViewById(R.id.playButton)
+        addToPlaylistButton = findViewById(R.id.buttonAddCollection)
+        addToFavoritesButton = findViewById(R.id.favorite_button)
 
 
         val track = intent.getSerializableExtra(TRACK_DATA) as? Track
@@ -43,32 +51,32 @@ class PlayerActivity : AppCompatActivity() {
             updateUI(it)
         }
 
-        findViewById<ImageView>(R.id.arrow).setOnClickListener {
-            finish()
+        backButton.setOnClickListener {
+           finish()
         }
     }
 
     private fun updateUI(track: Track) {
-        trackName.text = track.trackName
-        artistName.text = track.artistName
-        collection.text = track.collectionName
+        trackNameTextView.text = track.trackName
+        artistNameTextView.text = track.artistName
+        collectionNameTextView.text = track.collectionName
 
-        release.text = formatReleaseDate(track.releaseDate)
-        genre.text = track.genre
-        country.text = track.country
-        trackTime.text = formatTrackTime(track.trackTimeMillis.toLong())
+        releaseDateTextView.text = formatReleaseDate(track.releaseDate)
+        primaryGenreNameTextView.text = track.genre
+        countryTextView.text = track.country
+        trackTimeTextView.text = formatTrackTime(track.trackTimeMillis.toLong())
 
         val artworkUrl = track.getCoverArtwork()
         Glide.with(this)
             .load(artworkUrl)
             .placeholder(R.drawable.track_placeholder)
-            .into(artwork)
+            .into(coverImageView)
     }
 
 
     private fun formatReleaseDate(releaseDate: Date?): String {
         if (releaseDate == null) {
-            return UNKNOWN_DATE
+            return "Не указано"
         }
 
         val dateFormat = SimpleDateFormat(PATTERN_DATE_FORMAT, Locale.getDefault())
@@ -81,13 +89,9 @@ class PlayerActivity : AppCompatActivity() {
         return String.format(FORMAT_TIME_TS, minutes, seconds)
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        finish()
-    }
+
 
     companion object {
-        const val UNKNOWN_DATE = "Не указано"
         const val FORMAT_TIME_TS = "%02d:%02d"
         const val PATTERN_DATE_FORMAT = "yyyy"
         const val TRACK_DATA = "TRACK_DATA"
