@@ -64,10 +64,10 @@ class PlayerActivity : AppCompatActivity() {
         collectionNameTextView.text = track.collectionName
 
         releaseDateTextView.text = formatReleaseDate(track.releaseDate)
-        primaryGenreNameTextView.text = track.genre
-        countryTextView.text = track.country
-        trackTimeTextView.text = formatTrackTime(track.trackTimeMillis.toLong())
 
+        trackTimeTextView.text = formatTrackTime(track.trackTimeMillis.toLong())
+        primaryGenreNameTextView.text = if (track.genre.isNullOrEmpty()) "Не указано" else track.genre
+        countryTextView.text = if (track.country.isNullOrEmpty()) "Не указано" else track.country
         val artworkUrl = track.getCoverArtwork()
         Glide.with(this)
             .load(artworkUrl)
@@ -77,10 +77,13 @@ class PlayerActivity : AppCompatActivity() {
     }
 
 
+
+
     private fun formatReleaseDate(releaseDate: Date?): String {
         if (releaseDate == null) {
             return "Не указано"
         }
+
 
         val dateFormat = SimpleDateFormat(PATTERN_DATE_FORMAT, Locale.getDefault())
         return dateFormat.format(releaseDate)

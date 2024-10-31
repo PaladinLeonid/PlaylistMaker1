@@ -28,7 +28,7 @@
     <string name="no_internet_second_line">" "</string>
     <string name="no_internet_third_line">Загрузка не удалась. Проверьте подключение к интернету</string>
     <string name="update">Обновить</string>
-    <string name="iTunes_link">https://itunes.apple.com/\n</string>
+    <string name="iTunes_link">https://itunes.apple.com/</string>
     <string name="back_arrow_button">Back Button</string>
     <string name="image_cover">image cover</string>
     <string name="add_to_collection">Список треков</string>
@@ -42,7 +42,6 @@
     <string name="country">Страна</string>
     <string name="You_search">Вы искали</string>
     <string name="remove_history">Очистить историю</string>
-    <string name="dark_mode">Темная тема\n</string>
-
+    <string name="dark_mode">Темная тема</string>
     <string name="Duration">Длительность</string>
 </resources>
