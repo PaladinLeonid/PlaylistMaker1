@@ -29,16 +29,20 @@ class TrackViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     }
 
     @SuppressLint("SuspiciousIndentation")
-    fun bind(model: Track, isTrackAddedToHistory: Boolean = false) {
+    fun bind(model: Track) {
         trackName.text = model.trackName
         artistName.text = model.artistName
         trackTime.text = getTrackDuration(model.trackTimeMillis.toString())
-        Glide.with(itemView)
+        artistName.requestLayout()
+        Glide.with(itemView.context)
             .load(model.artworkUrl100)
             .fitCenter()
             .placeholder(R.drawable.track_placeholder)
             .centerCrop()
             .transform(RoundedCorners(Utils.dpToPx(2f, itemView.context)))
             .into(trackLogo)
+        itemView.setOnClickListener {
+
+        }
     }
 }

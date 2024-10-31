@@ -26,18 +26,14 @@
             android:orientation="vertical"
             app:layout_constraintGuide_end="16dp" />
 
-        <ImageView
+        <TextView
             android:id="@+id/backButton"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="4dp"
-            app:tint="@color/settings_text_color"
-            android:contentDescription="@string/back_arrow_button"
-            android:src="@drawable/arrow_back_foreground"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:drawableLeftCompat = "@drawable/track_back">
+        </TextView>
 
 
         <ImageView
@@ -45,14 +41,16 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginHorizontal="8dp"
+
             android:layout_marginTop="30dp"
             android:contentDescription="@string/image_cover"
             android:scaleType="centerCrop"
+
             app:layout_constraintDimensionRatio="h,1:1"
             app:layout_constraintEnd_toStartOf="@id/endBorder"
             app:layout_constraintStart_toEndOf="@id/startBorder"
             app:layout_constraintTop_toBottomOf="@id/backButton"
-            tools:src="@drawable/ic_launcher_background" />
+             />
 
         <TextView
             android:id="@+id/track_name_player"
@@ -101,7 +99,7 @@
             android:layout_marginTop="30dp"
             android:background="@drawable/play_button"
             android:contentDescription="@string/play"
-            android:backgroundTint="?attr/colorOnSecondary"
+            android:backgroundTint="@color/settings_text_color"
             app:layout_constraintEnd_toStartOf="@id/favorite_button"
             app:layout_constraintStart_toEndOf="@id/buttonAddCollection"
             app:layout_constraintTop_toBottomOf="@+id/artistName" />
@@ -238,7 +236,7 @@
             app:layout_constraintBaseline_toBaselineOf="@id/genreTitle"
             app:layout_constraintEnd_toStartOf="@id/endBorder"
             app:layout_constraintStart_toEndOf="@id/textsBarrier"
-            tools:text="Рок"
+            tools:text="Rock"
             style="@style/TrackContent" />
 
         <TextView
@@ -248,7 +246,7 @@
             app:layout_constraintBaseline_toBaselineOf="@id/countryTitle"
             app:layout_constraintEnd_toStartOf="@id/endBorder"
             app:layout_constraintStart_toEndOf="@id/textsBarrier"
-            tools:text="С.Ш.А"
+            tools:text="Country"
             style="@style/TrackContent" />
 
 

@@ -7,12 +7,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+@Suppress("DEPRECATION")
 class PlayerActivity : AppCompatActivity() {
-    private lateinit var backButton: ImageView
+    private lateinit var backButton: TextView
     private lateinit var coverImageView: ImageView
     private lateinit var trackNameTextView: TextView
     private lateinit var artistNameTextView: TextView
@@ -70,6 +72,7 @@ class PlayerActivity : AppCompatActivity() {
         Glide.with(this)
             .load(artworkUrl)
             .placeholder(R.drawable.track_placeholder)
+            .transform(RoundedCorners(Utils.spToPx(this, 8f).toInt()))
             .into(coverImageView)
     }
 
