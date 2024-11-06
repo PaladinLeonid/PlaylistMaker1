@@ -11,4 +11,10 @@
         <dimen name="setting_text_size">16sp</dimen>
         <dimen name="setting_icon_size">16dp</dimen>
         <dimen name="placeholder_text_size">19sp</dimen>
+        <dimen name="track_footer_description">14sp</dimen>
+        <dimen name="content_description_footer">13sp</dimen>
+        <dimen name="song_description">11sp</dimen>
+        <dimen name="button_refresh">14sp</dimen>
+        <dimen name="track_description">13sp</dimen>
+        <dimen name="track_screen_song">14sp</dimen>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.playlistmaker1
 
+import Track
 import android.annotation.SuppressLint
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +21,7 @@ class TrackAdapter(
     override fun onBindViewHolder(holder: TrackViewHolder, position: Int) {
         val track = tracks[position]
         holder.bind(track)
+
         holder.itemView.setOnClickListener {
             onTrackClickListener(track)
         }

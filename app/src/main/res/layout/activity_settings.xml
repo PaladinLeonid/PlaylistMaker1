@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -34,15 +33,15 @@
 
     </LinearLayout>
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/themeSwitcher1"
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchTheme"
         android:layout_width="match_parent"
-        android:layout_height="61dp"
+        android:layout_height="60dp"
         android:layout_marginTop="24dp"
         android:layout_gravity="center_vertical"
         style="@style/SettingTextStyle"
         tools:ignore="RtlCompat,TextViewEdits,TouchTargetSizeCheck"
-        android:text="@string/Theme"
+        android:text="@string/dark_mode"
         app:thumbTint="@color/switch_thumb"
         app:trackTint="@color/switch_track" />
 
@@ -72,4 +71,3 @@
         android:text="@string/useragrement" />
 
 </LinearLayout>
-

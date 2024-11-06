@@ -1,5 +1,7 @@
 package com.example.playlistmaker1
 
+import Track
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -61,10 +63,12 @@ class SearchActivity : AppCompatActivity() {
         }
 
         adapter = TrackAdapter(mutableListOf()) { track ->
+            openTrack(track)
             searchHistory.saveToHistory(track)
             if (searchQuery.isEmpty())
                 adapter.updateTracks(searchHistory.getSearchHistory())
         }
+        
 
         searchHistory = SearchHistory(getSharedPreferences("SEARCH_HISTORY", MODE_PRIVATE))
 
@@ -129,6 +133,7 @@ class SearchActivity : AppCompatActivity() {
             adapter.updateTracks(searchHistory.getSearchHistory())
             recyclerView.visibility = View.VISIBLE
             historyCleaner.visibility = View.VISIBLE
+            noInternet.visibility =View.GONE
             searchField.requestFocus()
         }
 
@@ -174,6 +179,13 @@ class SearchActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun openTrack(track: Track) {
+        val trackIntent = Intent(this, PlayerActivity:: class.java).apply {
+            putExtra(TRACK_DATA,track)
+        }
+        startActivity(trackIntent)
     }
 
     private fun performSearch(query: String, callback: (Boolean) -> Unit) {
@@ -260,6 +272,7 @@ class SearchActivity : AppCompatActivity() {
     companion object {
         private const val SEARCH_QUERY_KEY = "search_query"
         private const val IS_CLEAR_BUTTON_VISIBLE_KEY = "isClearButtonVisible"
+        const val TRACK_DATA = "TRACK_DATA"
     }
 
 }
