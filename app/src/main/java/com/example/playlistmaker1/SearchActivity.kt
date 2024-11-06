@@ -3,16 +3,17 @@ package com.example.playlistmaker1
 import Track
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.View
-import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -39,6 +40,12 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var searchHistory: SearchHistory
     private lateinit var yourSearch: TextView
     private lateinit var historyCleaner: Button
+    private lateinit var progressBar: ProgressBar
+
+    private var isClickAllowed = true
+    private val handler = Handler(Looper.getMainLooper())
+    private var runable= Runnable { performSearch(searchQuery, callback = null) }
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,7 +64,7 @@ class SearchActivity : AppCompatActivity() {
         yourSearch = findViewById(R.id.yourSearch)
         historyCleaner = findViewById(R.id.historyCleaner)
         supportActionBar?.hide()
-
+        progressBar = findViewById(R.id.progressBar)
         backButton.setOnClickListener {
             finish()
         }
@@ -68,7 +75,7 @@ class SearchActivity : AppCompatActivity() {
             if (searchQuery.isEmpty())
                 adapter.updateTracks(searchHistory.getSearchHistory())
         }
-        
+
 
         searchHistory = SearchHistory(getSharedPreferences("SEARCH_HISTORY", MODE_PRIVATE))
 
@@ -80,11 +87,13 @@ class SearchActivity : AppCompatActivity() {
             recyclerView.visibility = View.VISIBLE
             noSong.visibility = View.GONE
             historyCleaner.visibility = View.VISIBLE
+            progressBar.visibility = View.GONE
         } else {
             noSong.visibility = View.GONE
             recyclerView.visibility = View.GONE
             yourSearch.visibility = View.GONE
             historyCleaner.visibility = View.GONE
+            progressBar.visibility = View.GONE
         }
 
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -95,6 +104,7 @@ class SearchActivity : AppCompatActivity() {
             yourSearch.visibility = View.GONE
             historyCleaner.visibility = View.GONE
             recyclerView.visibility = View.GONE
+            progressBar.visibility = View.GONE
         }
 
         searchField.addTextChangedListener(object : TextWatcher {
@@ -118,6 +128,11 @@ class SearchActivity : AppCompatActivity() {
                     yourSearch.visibility = View.GONE
                     recyclerView.visibility = View.GONE
                     historyCleaner.visibility = View.GONE
+                    if (s?.isEmpty() == false) {
+                        searchQuery = searchField.text.toString()
+                        searchDebounce()
+                        progressBar.visibility = View.VISIBLE
+                    }
                 }
             }
 
@@ -137,11 +152,12 @@ class SearchActivity : AppCompatActivity() {
             searchField.requestFocus()
         }
 
-        searchField.setOnEditorActionListener { _, actionId, _ ->
+   /*   searchField.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 Log.d("SearchActivity", "Search query: $searchQuery")
                 performSearch(searchQuery) { trackFound ->
                     if (trackFound) {
+
                         noSong.visibility = View.GONE
                         yourSearch.visibility = View.GONE
                         historyCleaner.visibility = View.GONE
@@ -153,11 +169,12 @@ class SearchActivity : AppCompatActivity() {
             } else {
                 false
             }
-        }
+        }*/
 
         focusButton.setOnClickListener {
             searchField.requestFocus()
             showKeyboard(searchField)
+            progressBar.visibility = View.GONE
         }
         searchField.requestFocus()
         searchField.postDelayed({ showKeyboard(searchField) }, 100)
@@ -173,6 +190,7 @@ class SearchActivity : AppCompatActivity() {
                         noSong.visibility = View.GONE
                         yourSearch.visibility = View.GONE
                         historyCleaner.visibility = View.GONE
+
                     } else {
                         noInternet.visibility = View.VISIBLE
                     }
@@ -180,16 +198,29 @@ class SearchActivity : AppCompatActivity() {
             }
         }
     }
-
+    private var runnable = Runnable {
+        performSearch(searchQuery, callback = { trackFound ->
+            // Обработка результата поиска
+            if (trackFound) {
+                // Если треки найдены
+                noSong.visibility = View.GONE
+            } else {
+                // Если треки не найдены
+                noSong.visibility = View.VISIBLE
+            }
+            progressBar.visibility = View.GONE
+        })
+    }
     private fun openTrack(track: Track) {
+
         val trackIntent = Intent(this, PlayerActivity:: class.java).apply {
             putExtra(TRACK_DATA,track)
         }
         startActivity(trackIntent)
     }
 
-    private fun performSearch(query: String, callback: (Boolean) -> Unit) {
-
+    private fun performSearch(query: String, callback: ((Boolean) -> Unit)?) {
+        progressBar.visibility = View.VISIBLE
         val retrofit = Retrofit.Builder()
             .baseUrl(getString(R.string.iTunes_link))
             .addConverterFactory(GsonConverterFactory.create())
@@ -202,8 +233,8 @@ class SearchActivity : AppCompatActivity() {
         call.enqueue(object : Callback<TrackResponse> {
 
             override fun onResponse(call: Call<TrackResponse>, response: Response<TrackResponse>) {
-                noInternet.visibility = View.GONE
-
+                 noInternet.visibility = View.GONE
+                progressBar.visibility = View.GONE
                 if (response.isSuccessful) {
 
                     val trackResponse = response.body()
@@ -218,29 +249,43 @@ class SearchActivity : AppCompatActivity() {
                         noSong.visibility = View.GONE
                         yourSearch.visibility = View.GONE
                         historyCleaner.visibility = View.GONE
-                        callback(true)
+
                     } else {
                         recyclerView.visibility = View.GONE
                         noSong.visibility = View.VISIBLE
-                        callback(false)
+
                     }
 
                 }
             }
 
             override fun onFailure(call: Call<TrackResponse>, t: Throwable) {
+                progressBar.visibility = View.GONE
                 noInternet.visibility = View.VISIBLE
                 recyclerView.visibility = View.GONE
                 hideKeyboard(window.decorView.rootView)
                 noSong.visibility = View.GONE
                 yourSearch.visibility = View.GONE
                 historyCleaner.visibility = View.GONE
+
                 lastQuery = searchQuery
-                callback(true)
+
             }
         })
     }
+    private fun clickDebounce(): Boolean {
+        val current = isClickAllowed
+        if (isClickAllowed) {
+            isClickAllowed = false
+            handler.postDelayed({ isClickAllowed = true }, CLICK_DEBOUNCE)
+        }
+        return current
+    }
 
+    private fun searchDebounce() {
+        handler.removeCallbacks(runable)
+        handler.postDelayed(runable, SEARCH_DEBOUNCE)
+    }
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString(SEARCH_QUERY_KEY, searchQuery)
@@ -273,6 +318,8 @@ class SearchActivity : AppCompatActivity() {
         private const val SEARCH_QUERY_KEY = "search_query"
         private const val IS_CLEAR_BUTTON_VISIBLE_KEY = "isClearButtonVisible"
         const val TRACK_DATA = "TRACK_DATA"
+        private const val CLICK_DEBOUNCE = 1000L
+        private const val SEARCH_DEBOUNCE = 2000L
     }
 
 }

@@ -21,6 +21,5 @@
     <color name="Update_btn_tint">#1A1B22</color>
     <color name="switch_thumb">#AEAFB4</color>
     <color name="switch_track">#E6E8EB</color>
-
+    <color name="progress" >#3772E7</color>
 </resources>
-
