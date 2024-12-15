@@ -1,10 +1,9 @@
-package com.example.playlistmaker1
+package com.example.playlistmaker1.ui.library
 
-import android.content.Intent
-import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
+import com.example.playlistmaker1.R
 
 class MediaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

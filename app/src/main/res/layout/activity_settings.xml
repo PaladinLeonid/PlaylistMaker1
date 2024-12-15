@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SettingsActivity"
+    tools:context=".ui.settings.SettingsActivity"
     android:background="@color/setting_bg"
     android:paddingLeft="@dimen/main_padding"
     android:paddingRight="@dimen/main_padding">
