@@ -8,14 +8,14 @@
     android:background="@color/setting_bg">
 
     <LinearLayout
-
+        android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@color/setting_bg"
         android:paddingLeft="@dimen/main_padding"
         android:paddingRight="@dimen/main_padding"
-        tools:context=".SearchActivity">
+        tools:context=".ui.search.SearchActivity">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="56dp"
@@ -55,7 +55,7 @@
                 >
 
                 <EditText
-                    android:id="@+id/search_edit_field"
+                    android:id="@+id/search_edit_text"
                     android:layout_width="339dp"
                     android:layout_height="match_parent"
                     android:autofillHints=""
@@ -84,7 +84,7 @@
                     android:visibility="gone"/>
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/search_clear_btn"
+                    android:id="@+id/et_clear_btn"
                     android:layout_width="40dp"
                     android:layout_height="36dp"
                     android:layout_gravity="end|center_vertical"
@@ -124,7 +124,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:visibility="visible"
-            android:id="@+id/trackList"
+            android:id="@+id/tracks"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
@@ -202,7 +202,7 @@
                     style="@style/Placeholder"
                     android:text="@string/no_internet_third_line" />
                 <Button
-                    android:id="@+id/update_button"
+                    android:id="@+id/update_internet_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"

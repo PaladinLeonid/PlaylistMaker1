@@ -1,3 +1,5 @@
+package com.example.playlistmaker1.data.model
+
 import java.io.Serializable
 import java.util.Date
 
